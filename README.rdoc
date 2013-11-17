@@ -1,0 +1,27 @@
+= Tidings
+
+A platform optimized file-change watcher.
+
+== Installation
+
+  $ gem install tidings
+
+== Short example
+
+  Tidings.watch('/Users/janice/Code') do |files|
+    files.each do |file|
+      puts "#{file} changed"
+    end
+  end
+
+== Long example
+  
+  module MyFileWatcher
+    def self.call(files)
+      files.each do |file|
+        puts "#{file} changed"
+      end
+    end
+  end
+
+  Tidings.watch('/Users/janice/Code', MyFileWatcher)
