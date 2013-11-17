@@ -1,10 +1,11 @@
 require 'rdoc/task'
 
+$:.unshift(File.expand_path('../ext', __FILE__))
+
 task :default => :test
 task :compile => "extconf:compile"
 
 task :version => :compile do
-  $:.unshift(File.expand_path('../ext', __FILE__))
   require 'tidings'
   puts Tidings::VERSION
 end
