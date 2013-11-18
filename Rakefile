@@ -5,11 +5,6 @@ $:.unshift(File.expand_path('../ext', __FILE__))
 task :default => :test
 task :compile => "extconf:compile"
 
-task :version => :compile do
-  require 'tidings'
-  puts Tidings::VERSION
-end
-
 desc "Run all tests"
 task :test => :compile do
   Dir[File.dirname(__FILE__) + '/test/**/*_test.rb'].each do |file|
@@ -53,8 +48,8 @@ namespace :extconf do
 
   desc "Compile the Ruby extension"
   task :compile => :make do
-    if Dir.glob("ext/tidings.{o,so,dll}").length == 0
-      $stderr.puts("Failed to build Tidings.")
+    if Dir.glob("ext/*.{o,so,dll}").length == 0
+      $stderr.puts("Failed to build ext.")
       exit(1)
     end
   end
@@ -64,7 +59,7 @@ namespace :docs do
   Rake::RDocTask.new('generate') do |rdoc|
     rdoc.title = 'Tidings'
     rdoc.main = "README.rdoc"
-    rdoc.rdoc_files.include('README.rdoc', 'ext/tidings.c')
+    rdoc.rdoc_files.include('README.rdoc', 'ext/fs_event.c')
     rdoc.options << "--all" << "--charset" << "utf-8"
   end
 end

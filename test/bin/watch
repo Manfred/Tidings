@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+%w(lib ext).each do |path|
+  $:.unshift(File.expand_path("../../#{path}", __dir__))
+end
+
+require 'tidings'
+
+Tidings.watch(File.expand_path('../../test', __dir__)) do |paths|
+  puts "Changed: #{paths.inspect}"
+end

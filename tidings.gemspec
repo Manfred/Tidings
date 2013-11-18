@@ -1,5 +1,5 @@
-$:.unshift File.expand_path('../ext', __FILE__)
-require 'tidings'
+$:.unshift File.expand_path('../lib', __FILE__)
+require 'tidings/version'
 
 Gem::Specification.new do |spec|
   spec.name     = "tidings"

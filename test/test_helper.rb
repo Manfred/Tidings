@@ -1,3 +1,7 @@
 require 'peck/flavors/vanilla'
-$:.unshift(File.expand_path('../ext', __dir__))
+
+%w(lib ext).each do |path|
+  $:.unshift(File.expand_path("../#{path}", __dir__))
+end
+
 require 'tidings'
