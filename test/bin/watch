@@ -6,6 +6,6 @@ end
 
 require 'tidings'
 
-Tidings.watch(File.expand_path('../../test', __dir__)) do |paths|
-  puts "Changed: #{paths.inspect}"
+Tidings.watch(File.expand_path('../../test', __dir__)) do |path, flags|
+  puts "Changed: #{path.inspect} #{flags.inspect}"
 end
