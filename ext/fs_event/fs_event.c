@@ -6,7 +6,7 @@
 
 static VALUE processor;
 
-VALUE fs_event_event_type(const FSEventStreamEventFlags eventFlags)
+VALUE fs_event_event_flags(const FSEventStreamEventFlags eventFlags)
 {
   VALUE event_flags = rb_ary_new();
 
@@ -43,7 +43,7 @@ void fs_event_callback(
   for(index=0; index < numberOfEvents; index++) {
     rb_funcall(processor, rb_intern("call"), 2,
       rb_str_new2(paths[index]),
-      fs_event_event_type(eventFlags[index])
+      fs_event_event_flags(eventFlags[index])
     );
   }
 }
