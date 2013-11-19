@@ -1,6 +1,8 @@
 case RUBY_PLATFORM
 when /darwin/
   require 'fs_event'
+when /linux/
+  require 'inotify'
 else
   raise RuntimeError, "Your platform is currently not supported (#{RUBY_PLATFORM})"
 end

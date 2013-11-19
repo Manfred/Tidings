@@ -1,7 +1,10 @@
 require 'mkmf'
 
-if RUBY_PLATFORM =~ /darwin/
+case RUBY_PLATFORM
+when /darwin/
   with_ldflags("-framework CoreServices") do
-    create_makefile("fs_event")
+    create_makefile("fs_event/fs_event", "fs_event")
   end
+when /linux/
+  create_makefile("inotify/inotify", "inotify")
 end

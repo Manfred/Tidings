@@ -50,7 +50,7 @@ void fs_event_callback(
 
 /*
  *  call-seq:
- *    tidings_watch(path, processor)
+ *    fs_event_watch(path, processor)
  *
  *  Calls the block with the changed paths when something changes in the
  *  specified path. This method blocks the thread forever.
