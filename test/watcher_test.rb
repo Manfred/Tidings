@@ -57,12 +57,14 @@ if fork
       end
     end
 
-    def read_events(counter=10)
+    def read_events(counter=4)
       buffer = ''
       wait(counter) { buffer << $read.read }
       buffer.split("\n").map { |l| Marshal.load(l) }
     end
   end
+
+  sleep 0.1
 
   Peck::Notifiers::Default.use
   Peck.run

@@ -44,6 +44,7 @@ static VALUE inotify_watch(VALUE self, VALUE path, VALUE processor)
   int notify;
   int watch;
   char buffer[BUF_LEN];
+  VALUE mFile = rb_const_get(rb_cObject, rb_intern("File"));
 
   fd_set rfds;
   struct timeval tv;
@@ -71,13 +72,13 @@ static VALUE inotify_watch(VALUE self, VALUE path, VALUE processor)
     } else if (FD_ISSET(notify, &rfds)) {
       length = read(notify, buffer, BUF_LEN);
       if (length < 0) perror("read");
-    
+
       i = 0;
       while(i < length) {
         struct inotify_event *event = (struct inotify_event *)&buffer[i];
         if (event->len) {
           rb_funcall(processor, rb_intern("call"), 2,
-            rb_str_new2(event->name),
+            rb_funcall(mFile, rb_intern("join"), 2, path, rb_str_new2(event->name)),
             inotify_event_flags(event->mask)
           );
         }
