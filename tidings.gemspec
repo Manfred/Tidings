@@ -13,11 +13,10 @@ Gem::Specification.new do |spec|
   spec.email = ['manfred@fngtpspec.com']
 
   spec.extensions << 'ext/extconf.rb'
-  spec.files = Dir[
+  spec.files = Dir.glob('{bin,lib,ext}/**/*') + [
     'README.rdoc',
     'COPYING'
   ]
-
   spec.extra_rdoc_files = %w(
     README.rdoc
     COPYING
