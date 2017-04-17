@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
     COPYING
   )
 
-  spec.add_development_dependency("peck")
   spec.add_development_dependency("fakefs")
 end
 

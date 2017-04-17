@@ -1,7 +1,7 @@
 require File.expand_path('test_helper', __dir__)
 
-describe Tidings do
-  it "returns its version" do
-    Tidings::VERSION.should =~ /\d+\.\d+\.\d+/
+class TidingsTest < Minitest::Test
+  def test_returns_its_version
+    assert_match /\d+\.\d+\.\d+/, Tidings::VERSION
   end
 end

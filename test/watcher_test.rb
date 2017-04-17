@@ -1,10 +1,4 @@
-require 'peck'
-require 'peck/delegates'
-require 'peck/counter'
-require 'peck/context'
-require 'peck/specification'
-require 'peck/expectations'
-require 'peck/notifiers/default'
+require 'minitest'
 
 %w(lib ext).each do |path|
   $:.unshift(File.expand_path("../#{path}", __dir__))
@@ -37,18 +31,20 @@ $read, $write = IO.pipe
 if fork
   $write.close
 
-  describe Tidings::Watcher do
-    before do
+  class WatcherTest < Minitest::Test
+    def setup
       TestFiles.clear!
     end
 
-    it "reports changes to the filesystem and its flags" do
+    def test_reports_changes_to_the_filesystem_and_its_flags
       TestFiles.touch('config/database.yml')
       events = read_events
       event = events[0]
-      event[0].should.start_with(TestFiles.watch_path)
-      event[1].should.include(:created)
+      assert event[0].start_with?(TestFiles.watch_path)
+      assert event[1].include?(:created)
     end
+
+  private
 
     def wait(counter)
       while((counter -= 1) > 0)
@@ -66,12 +62,11 @@ if fork
 
   sleep 0.1
 
-  Peck::Notifiers::Default.use
-  Peck.run
+  Minitest.run
 
 else
-  $read.close
 
+  $read.close
   TestFiles.clear!
   Tidings.watch(File.expand_path('../tmp', __dir__)) do |path, flags|
     $write.puts(Marshal.dump([path, flags]))
@@ -79,4 +74,3 @@ else
   end
 
 end
-

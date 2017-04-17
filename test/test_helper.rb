@@ -1,4 +1,4 @@
-require 'peck/flavors/vanilla'
+require 'minitest/autorun'
 
 %w(lib ext).each do |path|
   $:.unshift(File.expand_path("../#{path}", __dir__))
