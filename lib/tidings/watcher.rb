@@ -5,15 +5,26 @@ module Tidings
     end
 
     def start
+      Signal.trap("HUP") { stop }
       Signal.trap("SIGINT") { stop }
-      @pid = fork { watch }
+      @pid = fork do
+        begin
+          watch
+        rescue Exception => exception
+          Tidings.log(
+            "Tidings encountered an uncaught exeption: #{exception.message}"
+          )
+          exit
+        end
+      end
       Tidings.log("Tidings running on PID: #{@pid}")
-      Process.wait
+      Process.waitpid(@pid)
       Tidings.log("Tidings stopped running")
     end
 
     def stop
       Process.kill("KILL", @pid)
+    rescue Errno::ESRCH
     end
 
     if const_defined?(:FSEvent)
