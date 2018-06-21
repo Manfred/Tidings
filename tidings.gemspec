@@ -1,5 +1,6 @@
 $:.unshift File.expand_path('../lib', __FILE__)
 require 'tidings/version'
+require 'date'
 
 Gem::Specification.new do |spec|
   spec.name     = "tidings"
