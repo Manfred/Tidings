@@ -14,14 +14,13 @@ Gem::Specification.new do |spec|
 
   spec.extensions << 'ext/extconf.rb'
   spec.files = Dir.glob('{bin,lib,ext}/**/*') + [
-    'README.rdoc',
+    'README.md',
+    'CHANGELOG.md',
     'COPYING'
   ]
   spec.extra_rdoc_files = %w(
-    README.rdoc
     COPYING
   )
 
   spec.add_development_dependency("fakefs")
 end
-
