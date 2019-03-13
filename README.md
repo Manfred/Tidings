@@ -4,7 +4,7 @@ A platform optimized file-change watcher.
 
 ## Installation
 
-  $ gem install tidings
+    $ gem install tidings
 
 ## Short example
 
@@ -28,4 +28,8 @@ module MyFileWatcher
 end
 
 Tidings.watch('/Users/janice/Code', MyFileWatcher)
-````
+```
+
+## Copyright
+
+MIT license, see COPYING.
