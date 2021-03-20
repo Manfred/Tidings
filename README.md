@@ -10,7 +10,7 @@ A platform optimized file-change watcher.
 
 ```ruby
 Tidings.watch('/Users/janice/Code') do |file_or_path, flags|
-  if flags.include(:dir)
+  if flags.include?(:dir)
     puts "Change to directory: #{file_or_path}"
   else
     puts "Change to file: #{file_or_path}"
