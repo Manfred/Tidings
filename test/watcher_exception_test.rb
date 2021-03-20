@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'preamble'
 
 class WatcherExceptionTest < Minitest::Test
@@ -11,8 +13,8 @@ class WatcherExceptionTest < Minitest::Test
       TestFiles.touch('config/database.yml')
     end
 
-    Tidings.watch(File.expand_path('../tmp', __dir__)) do |path, flags|
-      raise ArgumentError, "Something went wrong!"
+    Tidings.watch(File.expand_path('../tmp', __dir__)) do |_path, _flags|
+      raise ArgumentError, 'Something went wrong!'
     end
   end
 end

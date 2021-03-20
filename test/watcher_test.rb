@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'minitest'
 
-%w(lib ext).each do |path|
-  $:.unshift(File.expand_path("../#{path}", __dir__))
+%w[lib ext].each do |path|
+  $LOAD_PATH.unshift(File.expand_path("../#{path}", __dir__))
 end
 
 require 'tidings'
@@ -44,16 +46,16 @@ if fork
       assert event[1].include?(:created)
     end
 
-  private
+    private
 
     def wait(counter)
-      while((counter -= 1) > 0)
+      while (counter -= 1).positive?
         yield(counter)
         sleep 0.1
       end
     end
 
-    def read_events(counter=4)
+    def read_events(counter = 4)
       buffer = ''
       wait(counter) { buffer << $read.read }
       buffer.split("\n").map { |l| Marshal.load(l) }

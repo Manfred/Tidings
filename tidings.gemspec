@@ -1,16 +1,18 @@
-$:.unshift File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
 require 'tidings/version'
 require 'date'
 
 Gem::Specification.new do |spec|
-  spec.name     = "tidings"
+  spec.name     = 'tidings'
   spec.version  = Tidings::VERSION
   spec.date     = Date.today
 
-  spec.summary  = "A platform optimized file-change watcher."
-  spec.description = "Tidings lets you watch filesystem changes and act on them."
-  spec.authors  = ["Manfred Stienstra"]
-  spec.homepage = "http://github.com/Manfred/tidings"
+  spec.summary  = 'A platform optimized file-change watcher.'
+  spec.description = 'Tidings lets you watch filesystem changes and act on them.'
+  spec.authors  = ['Manfred Stienstra']
+  spec.homepage = 'http://github.com/Manfred/tidings'
   spec.email = ['manfred@fngtpspec.com']
 
   spec.extensions << 'ext/extconf.rb'
@@ -19,9 +21,9 @@ Gem::Specification.new do |spec|
     'CHANGELOG.md',
     'COPYING'
   ]
-  spec.extra_rdoc_files = %w(
+  spec.extra_rdoc_files = %w[
     COPYING
-  )
+  ]
 
-  spec.add_development_dependency("fakefs")
+  spec.add_development_dependency('fakefs')
 end
