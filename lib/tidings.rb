@@ -9,6 +9,9 @@ else
   raise "Your platform is currently not supported (#{RUBY_PLATFORM})"
 end
 
+# Contains the complete Tidings implementation.
+#
+#     Tidings.watch(File.expand_path('~/Code`)) { |file| pp file }
 module Tidings
   autoload :VERSION, 'tidings/version'
   autoload :Watcher, 'tidings/watcher'

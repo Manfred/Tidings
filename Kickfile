@@ -1,1 +1,11 @@
-recipe :ruby
+# frozen_string_literal: true
+
+process do |file|
+  case file
+  when /_test\.rb\Z/
+    watcher.execute("rubocop -A #{file}")
+    watcher.execute("ruby #{file}")
+  when /\.rb\Z/
+    watcher.execute("rubocop -A #{file}")
+  end
+end

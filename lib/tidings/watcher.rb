@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tidings
+  # Starts a file watcher in a separate process.
   class Watcher
     def initialize(path, processor)
       @path = path
